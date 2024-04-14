@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{de60d774-8524-45c4-b4f4-0026abda7ac2}</ProjectGuid>
+    <RootNamespace>snatan</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>C:\Libs\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Libs\SFML-2.6.1\lib_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>C:\Libs\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Libs\SFML-2.6.1\lib_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>C:\Libs\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Libs\SFML-2.6.1\lib_x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <AdditionalIncludeDirectories>C:\Libs\SFML-2.6.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Libs\SFML-2.6.1\lib_x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;sfml-graphics.lib;sfml-audio.lib;sfml-system.lib;sfml-window.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BlockSnake.cpp" />
+    <ClCompile Include="CentralViewScreen.cpp" />
+    <ClCompile Include="ChallengeVisual.cpp" />
+    <ClCompile Include="Digits.cpp" />
+    <ClCompile Include="Endianness.cpp" />
+    <ClCompile Include="FileOutputStream.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameDrawable.cpp" />
+    <ClCompile Include="GameImpl.cpp" />
+    <ClCompile Include="GraphicalUtility.cpp" />
+    <ClCompile Include="LanguageLoader.cpp" />
+    <ClCompile Include="Levels.cpp" />
+    <ClCompile Include="LevelStatistics.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MemoryOutputStream.cpp" />
+    <ClCompile Include="ObjectBehaviour.cpp" />
+    <ClCompile Include="ObjectBehaviourLoader.cpp" />
+    <ClCompile Include="ObjParamEnumUtility.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="PausableClock.cpp" />
+    <ClCompile Include="RandomizerImpl.cpp" />
+    <ClCompile Include="sha256.cpp" />
+    <ClCompile Include="SnakeDrawable.cpp" />
+    <ClCompile Include="SnakeWorld.cpp" />
+    <ClCompile Include="SoundPlayer.cpp" />
+    <ClCompile Include="SoundThrower.cpp" />
+    <ClCompile Include="SpriteArray.cpp" />
+    <ClCompile Include="TextureLoader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AttribEnums.hpp" />
+    <ClInclude Include="AudioEnums.hpp" />
+    <ClInclude Include="BasicUtility.hpp" />
+    <ClInclude Include="BlockSnake.hpp" />
+    <ClInclude Include="CentralViewScreen.hpp" />
+    <ClInclude Include="ChallengeVisual.hpp" />
+    <ClInclude Include="Constants.hpp" />
+    <ClInclude Include="Digits.hpp" />
+    <ClInclude Include="EatableItem.hpp" />
+    <ClInclude Include="Endianness.hpp" />
+    <ClInclude Include="EventEnums.hpp" />
+    <ClInclude Include="EventProcessor.hpp" />
+    <ClInclude Include="ExternalConstants.hpp" />
+    <ClInclude Include="FenwickTree.hpp" />
+    <ClInclude Include="FileOutputStream.hpp" />
+    <ClInclude Include="FilePaths.hpp" />
+    <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameDrawable.hpp" />
+    <ClInclude Include="GameImpl.hpp" />
+    <ClInclude Include="GraphicalEnums.hpp" />
+    <ClInclude Include="GraphicalUtility.hpp" />
+    <ClInclude Include="InterfaceEnums.hpp" />
+    <ClInclude Include="LanguageEnums.hpp" />
+    <ClInclude Include="LanguageLoader.hpp" />
+    <ClInclude Include="LevelElements.hpp" />
+    <ClInclude Include="Levels.hpp" />
+    <ClInclude Include="LevelStatistics.hpp" />
+    <ClInclude Include="LinguisticUtility.hpp" />
+    <ClInclude Include="Map.hpp" />
+    <ClInclude Include="MemoryOutputStream.hpp" />
+    <ClInclude Include="MiscEnum.hpp" />
+    <ClInclude Include="ObjectBehaviour.hpp" />
+    <ClInclude Include="ObjectBehaviourLoader.hpp" />
+    <ClInclude Include="ObjectEnums.hpp" />
+    <ClInclude Include="ObjectParameterEnums.hpp" />
+    <ClInclude Include="ObjParamEnumUtility.hpp" />
+    <ClInclude Include="Orientation.hpp" />
+    <ClInclude Include="OutputStream.hpp" />
+    <ClInclude Include="ParticleSystem.hpp" />
+    <ClInclude Include="PausableClock.hpp" />
+    <ClInclude Include="Randomizer.hpp" />
+    <ClInclude Include="RandomizerImpl.hpp" />
+    <ClInclude Include="sha256.hpp" />
+    <ClInclude Include="SnakeDrawable.hpp" />
+    <ClInclude Include="SnakeWorld.hpp" />
+    <ClInclude Include="SoundPlayer.hpp" />
+    <ClInclude Include="SoundThrower.hpp" />
+    <ClInclude Include="SpriteArray.hpp" />
+    <ClInclude Include="TextureLoader.hpp" />
+    <ClInclude Include="Word.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

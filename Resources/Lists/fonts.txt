@@ -1,0 +1,4 @@
+menu.ttf
+level_statistics.ttf
+manual.ttf
+plain.ttf
