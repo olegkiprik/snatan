@@ -1,6 +1,6 @@
-## Snatan
+<img src="Resources/Textures/icon.png" alt="logo" width="60"/>
 
-![Logo](Resources/Textures/icon.png)
+# Snatan
 
 ⛧ Puzzle-like levels of two difficulties<br/>
 ⛧ Cool design<br/>
