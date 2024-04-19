@@ -1,5 +1,7 @@
 ## Snatan
 
+![Logo](Resources/Textures/icon.png)
+
 ⛧ Puzzle-like levels of two difficulties<br/>
 ⛧ Cool design<br/>
 ⛧ Outstanding soundtrack borrowed from [Kevin MacLeod](http://incompetech.com/) (see the [credits](Resources/Music/license.txt))
