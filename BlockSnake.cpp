@@ -48,6 +48,7 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Clipboard.hpp>
 #include "sha256.hpp"
+#include <SFML/Window/Keyboard.hpp>
 #include <optional>
 #include <cassert>
 #include <iostream>
@@ -331,17 +332,16 @@ LevelMenuCommand BlockSnake::selectLevel() {
 
                 break;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape) {
+                if (event.key.code == sf::Keyboard::Escape || event.key.scancode == sf::Keyboard::Scancode::Q) {
                     return LevelMenuCommand::Back;
-                } else if (event.key.code == sf::Keyboard::Enter) {
+                } else if (event.key.code == sf::Keyboard::Enter || event.key.scancode == sf::Keyboard::Scancode::Space) {
                     if (currentDescrIndex < levelCount) {
                         m_levelIndex = currentDescrIndex;
                         m_difficulty = currentDescrDiff;
                         return LevelMenuCommand::Selected;
                     }
                 } else {
-                    switch (event.key.code) {
-                    case sf::Keyboard::Up:
+                    if (event.key.code == sf::Keyboard::Up || event.key.scancode == sf::Keyboard::Scancode::W) {
                         if (currentDescrIndex >= levelCount) {
                             currentDescrIndex = 0;
                             currentDescrDiff = 0;
@@ -350,8 +350,7 @@ LevelMenuCommand BlockSnake::selectLevel() {
                                 m_levelStatistics.levelExists(currentDescrDiff, currentDescrIndex - 1))
                                 --currentDescrIndex;
                         }
-                        break;
-                    case sf::Keyboard::Down:
+                    } else if (event.key.code == sf::Keyboard::Down || event.key.scancode == sf::Keyboard::Scancode::S) {
                         if (currentDescrIndex >= levelCount) {
                             currentDescrIndex = 0;
                             currentDescrDiff = 0;
@@ -360,8 +359,7 @@ LevelMenuCommand BlockSnake::selectLevel() {
                                 m_levelStatistics.levelExists(currentDescrDiff, currentDescrIndex + 1))
                                 ++currentDescrIndex;
                         }
-                        break;
-                    case sf::Keyboard::Left:
+                    } else if (event.key.code == sf::Keyboard::Left || event.key.scancode == sf::Keyboard::Scancode::A) {
                         if (currentDescrIndex >= levelCount) {
                             currentDescrIndex = 0;
                             currentDescrDiff = 0;
@@ -370,8 +368,7 @@ LevelMenuCommand BlockSnake::selectLevel() {
                                 .levelExists(currentDescrDiff - 1, currentDescrIndex))
                                 --currentDescrDiff;
                         }
-                        break;
-                    case sf::Keyboard::Right:
+                    } else if (event.key.code == sf::Keyboard::Right || event.key.scancode == sf::Keyboard::Scancode::D) {
                         if (currentDescrIndex >= levelCount) {
                             currentDescrIndex = 0;
                             currentDescrDiff = 0;
@@ -379,9 +376,6 @@ LevelMenuCommand BlockSnake::selectLevel() {
                             if (currentDescrDiff != diffCount - 1)
                                 ++currentDescrDiff;
                         }
-                        break;
-                    default:
-                        break;
                     }
                 }
                 break;
@@ -455,8 +449,11 @@ MainMenuCommand BlockSnake::mainMenu() {
             case sf::Event::Closed:
                 return MainMenuCommand::Exit;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Enter)
+                if (event.key.code == sf::Keyboard::Enter || event.key.scancode == sf::Keyboard::Scancode::Space)
                     return MainMenuCommand::Play;
+                else if (event.key.alt && event.key.scancode == sf::Keyboard::Scancode::Q) {
+                    return MainMenuCommand::Exit;
+                }
                 break;
             case sf::Event::MouseMoved:
                 if (buttonPressed == TEXT_COUNT) {
@@ -578,7 +575,9 @@ PauseMenuCommand BlockSnake::pauseMenu() {
             case sf::Event::Closed:
                 return PauseMenuCommand::Exit;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::Enter)
+                if (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::Enter ||
+                    event.key.scancode == sf::Keyboard::Scancode::W || event.key.scancode == sf::Keyboard::Scancode::A ||
+                    event.key.scancode == sf::Keyboard::Scancode::S || event.key.scancode == sf::Keyboard::Scancode::D)
                     return PauseMenuCommand::Continue;
                 break;
             case sf::Event::MouseMoved:
@@ -1029,7 +1028,7 @@ bool BlockSnake::settings() {
                 }
                 break;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape)
+                if (event.key.code == sf::Keyboard::Escape || event.key.scancode == sf::Keyboard::Scancode::Q)
                     return true;
                 break;
             default:
@@ -1099,7 +1098,7 @@ bool BlockSnake::manual() {
                 }
                 break;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape)
+                if (event.key.code == sf::Keyboard::Escape || event.key.scancode == sf::Keyboard::Scancode::Q)
                     return true;
                 else if (event.key.code == sf::Keyboard::C && event.key.control) {
                     sf::Clipboard::setString(getWord(lng, Word::ManualText));
@@ -1164,7 +1163,7 @@ bool BlockSnake::languages() {
                 }
                 break;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape)
+                if (event.key.code == sf::Keyboard::Escape || event.key.scancode == sf::Keyboard::Scancode::Q)
                     return true;
                 break;
             default:
@@ -1346,9 +1345,9 @@ StatisticMenu BlockSnake::statisticMenu(bool completed) {
 
                 break;
             case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Escape)
+                if (event.key.code == sf::Keyboard::Escape || event.key.scancode == sf::Keyboard::Scancode::Q)
                     return StatisticMenu::ToLevelMenu;
-                else if (event.key.code == sf::Keyboard::Space)
+                else if (event.key.scancode == sf::Keyboard::Scancode::Space)
                     return StatisticMenu::Again;
                 break;
             default:
@@ -4252,47 +4251,38 @@ void BlockSnake::processEvents() {
             m_toExit = true;
             break;
         case sf::Event::KeyPressed:
-            switch (event.key.code) {
-            case sf::Keyboard::Enter:
+            if (event.key.code == sf::Keyboard::Enter ||
+                event.key.scancode == sf::Keyboard::Scancode::G) {
                 m_gameClock.pause();
                 m_toReturn = true;
                 m_toExit = true;
-                break;
-            case sf::Keyboard::Escape:
+            } else if (event.key.code == sf::Keyboard::Escape || event.key.scancode == sf::Keyboard::Scancode::R) {
                 pauseGame();
-                break;
-            case sf::Keyboard::W:
-            case sf::Keyboard::Up:
-            case sf::Keyboard::Numpad8:
+            } else if (event.key.scancode == sf::Keyboard::Scancode::W ||
+                        event.key.code == sf::Keyboard::Up ||
+                       event.key.scancode == sf::Keyboard::Scancode::Numpad8) {
                 m_game.pushCommand(m_nowTime, Direction::Up);
                 m_rotatedPostEffect = false;
-                break;
-            case sf::Keyboard::A:
-            case sf::Keyboard::Left:
-            case sf::Keyboard::Numpad4:
+            } else if (event.key.scancode == sf::Keyboard::Scancode::A ||
+                        event.key.code == sf::Keyboard::Left ||
+                       event.key.scancode == sf::Keyboard::Scancode::Numpad4) {
                 m_game.pushCommand(m_nowTime, Direction::Left);
                 m_rotatedPostEffect = false;
-                break;
-            case sf::Keyboard::S:
-            case sf::Keyboard::Down:
-            case sf::Keyboard::Numpad5:
-            case sf::Keyboard::Numpad2:
+            } else if (event.key.scancode == sf::Keyboard::Scancode::S ||
+                        event.key.code == sf::Keyboard::Down ||
+                       event.key.scancode == sf::Keyboard::Scancode::Numpad5 ||
+                       event.key.scancode == sf::Keyboard::Scancode::Numpad2) {
                 m_game.pushCommand(m_nowTime, Direction::Down);
                 m_rotatedPostEffect = false;
-                break;
-            case sf::Keyboard::D:
-            case sf::Keyboard::Right:
-            case sf::Keyboard::Numpad6:
+            } else if (event.key.scancode == sf::Keyboard::Scancode::D ||
+                        event.key.code == sf::Keyboard::Right ||
+                       event.key.scancode == sf::Keyboard::Scancode::Numpad6) {
                 m_game.pushCommand(m_nowTime, Direction::Right);
                 m_rotatedPostEffect = false;
-                break;
-            case sf::Keyboard::Space:
+            } else if (event.key.code == sf::Keyboard::P) {
                 m_settings[(std::size_t)SettingEnum::SnakeHeadPointerEnabled] =
                     (std::uint32_t)!static_cast<bool>(
                     m_settings[(std::size_t)SettingEnum::SnakeHeadPointerEnabled]);
-                break;
-            default:
-                break;
             }
             break;
         case sf::Event::LostFocus:
