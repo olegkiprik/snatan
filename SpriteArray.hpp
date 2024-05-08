@@ -58,7 +58,7 @@ public:
 		return m_vertices.data();
 	}
 	std::size_t getVertexCount() const noexcept {
-		return m_vertices.size();
+		return m_used_size;
 	}
 
 	static constexpr sf::PrimitiveType PrimitiveType = sf::Triangles;
@@ -68,6 +68,7 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 	std::vector<sf::Vertex> m_vertices;
+	std::size_t m_used_size = 0;
 	const sf::Texture* m_texture;
 };
 

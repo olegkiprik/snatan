@@ -26,19 +26,20 @@
 #include "SpriteArray.hpp"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "Orientation.hpp"
+#include <cstring>
 
 namespace CrazySnakes {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteArray::SpriteArray() noexcept :
 	m_texture(nullptr),
-	m_vertices() {}
+	m_vertices(10000) {}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 SpriteArray::SpriteArray(const sf::Texture& texture) noexcept :
 	m_texture(&texture),
-	m_vertices() {}
+	m_vertices(10000) {}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,20 +131,25 @@ void SpriteArray::push(const sf::IntRect& textureRect, const sf::Vector2i& ltpos
 	vertices[4].position = (sf::Vector2f)pos[3];
 	vertices[5].position = (sf::Vector2f)pos[0];
 
-	m_vertices.insert(m_vertices.end(), vertices, vertices + 6);
+	if (m_used_size+6 > m_vertices.size()) {
+		m_vertices.resize(m_vertices.size() + 6);
+	}
+
+	std::memcpy(m_vertices.data() + m_used_size, vertices, 6 * sizeof(sf::Vertex));
+	m_used_size += 6;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 void SpriteArray::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	states.texture = m_texture;
-	target.draw(m_vertices.data(), m_vertices.size(), PrimitiveType, states);
+	target.draw(m_vertices.data(), m_used_size, PrimitiveType, states);
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 void SpriteArray::clear() noexcept {
-	m_vertices.clear();
+	m_used_size = 0;
 }
 
 }
