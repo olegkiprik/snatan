@@ -73,7 +73,7 @@ void MemoryOutputStream::open(std::vector<std::uint8_t>& handle) noexcept
 
 std::int64_t MemoryOutputStream::write(const void* data, std::int64_t size) {
     assert(m_memory);
-    if (m_pointer + size > m_memory->size()) {
+    if ((std::uint64_t)(m_pointer + size) > m_memory->size()) {
         m_memory->resize(m_pointer + size);
     }
     std::memcpy(m_memory->data() + m_pointer, data, size);

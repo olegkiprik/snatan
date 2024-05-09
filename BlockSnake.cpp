@@ -176,8 +176,10 @@ void BlockSnake::createWindow(bool resetVirtual) {
                                       sf::Style::Resize |
                                       sf::Style::Titlebar);
 
+    std::uint32_t fullscreen = sf::Style::Fullscreen;
+
     std::uint32_t style = (getSetting(SettingEnum::FullscreenEnabled) ?
-                           sf::Style::Fullscreen :
+                           fullscreen :
                            smallWindowStyle);
 
     m_window.create(windowMode, GameTitle, style, contextSettings);
